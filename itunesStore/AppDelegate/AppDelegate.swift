@@ -25,12 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationViewController = UINavigationController(rootViewController: homeViewController)
         window?.rootViewController = navigationViewController
         DependencyFactory.registerDependencies()
-//        do {
-//            contentFeedService = ContentFeedService.init()
-//            DependencyContainer.register(contentFeedService!)
-//        } catch {
-//            print("registration failed")
-//        }
 
         return true
     }
