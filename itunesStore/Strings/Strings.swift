@@ -1,6 +1,6 @@
 //
 //  Strings.swift
-//  demo
+//  itunesStore
 //
 //  Created by Swapnil Raut on 7/27/20.
 //  Copyright © 2020 Swapnil Raut. All rights reserved.

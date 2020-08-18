@@ -7,3 +7,13 @@
 //
 
 import Foundation
+import DependencyContainer
+
+class DependencyFactory {
+    
+    // MARK: - Register dependencies
+    
+    static func registerDependencies() {
+        DependencyContainer.register(ContentFeedService.init())
+    }
+}

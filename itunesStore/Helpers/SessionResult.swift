@@ -1,6 +1,6 @@
 //
 //  SessionResult.swift
-//  demo
+//  itunesStore
 //
 //  Created by Swapnil Raut on 7/24/20.
 //  Copyright © 2020 Swapnil Raut. All rights reserved.

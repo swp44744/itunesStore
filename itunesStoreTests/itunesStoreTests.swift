@@ -11,24 +11,45 @@ import XCTest
 
 class itunesStoreTests: XCTestCase {
 
+    // MARK: - Properties
+    
+    var serviceFactory: ServiceFactory!
+    var contentFeedService: ContentFeedService!
+    let defaultTimeout: TimeInterval = 5
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        serviceFactory = BaseServiceFactory()
+        contentFeedService = serviceFactory.makeContentFeedService()
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        serviceFactory = nil
+        contentFeedService = nil
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testFetchContentFeed() {
+        let exp = expectation(description: "get - iTunes music feed")
+        
+        contentFeedService.getContentFeed(pageCount: 1) { result in
+            switch result {
+            case .success(let contentFeed):
+                XCTAssertNotNil(contentFeed)
+                if let feed = contentFeed.feed, let artist = feed.results?.first {
+                    XCTAssertNotNil(artist)
+                } else {
+                    XCTFail("Response object is Nil!")
+                }
+            case .failure(_):
+                XCTFail("Error fetching data!")
+            }
+            exp.fulfill()
         }
+        waitForExpectations(timeout: defaultTimeout) { (error) in
+            if let error = error {
+                XCTFail("expectation error: \(error)")
+            }
+        }
+        
     }
 
 }

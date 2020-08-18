@@ -1,6 +1,6 @@
 //
 //  UIImageViewExtension.swift
-//  demo
+//  itunesStore
 //
 //  Created by Swapnil Raut on 7/26/20.
 //  Copyright © 2020 Swapnil Raut. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  demo
+//  itunesStore
 //
 //  Created by Swapnil Raut on 7/24/20.
 //  Copyright © 2020 Swapnil Raut. All rights reserved.
@@ -24,6 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let homeViewController = HomeViewController(collectionViewLayout: flowLayout)
         let navigationViewController = UINavigationController(rootViewController: homeViewController)
         window?.rootViewController = navigationViewController
+        DependencyFactory.registerDependencies()
+//        do {
+//            contentFeedService = ContentFeedService.init()
+//            DependencyContainer.register(contentFeedService!)
+//        } catch {
+//            print("registration failed")
+//        }
 
         return true
     }

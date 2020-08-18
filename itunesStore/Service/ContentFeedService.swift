@@ -1,6 +1,6 @@
 //
 //  ContentFeedService.swift
-//  demo
+//  itunesStore
 //
 //  Created by Swapnil Raut on 7/24/20.
 //  Copyright © 2020 Swapnil Raut. All rights reserved.
@@ -10,7 +10,9 @@ import Foundation
 
 class ContentFeedService {
     
-    // MARK: - Properties
+    // MARK: - Init
+    init() { }
+    
     
     // MARK: - Public Methods
     /// Get content feed for desired artists

@@ -1,12 +1,13 @@
 //
 //  HomeViewPresenter.swift
-//  demo
+//  itunesStore
 //
 //  Created by Swapnil Raut on 7/24/20.
 //  Copyright © 2020 Swapnil Raut. All rights reserved.
 //
 
 import Foundation
+import DependencyContainer
 
 public protocol HomeViewPresenterProtocol {
     func fetchContentFeed(callback: @escaping () -> Void)
@@ -50,17 +51,14 @@ class HomeViewPresenter: HomeViewPresenterProtocol {
             
         }
     }
-    private(set) var contentFeedService: ContentFeedService?
+    private var contentFeedService: ContentFeedService
 
     // MARK: - Contants
     
-    private let factory: Factory
-    
     // MARK: - Initializer
-    init(with view: HomeViewProtocol, factory: Factory) {
+    init(with view: HomeViewProtocol) {
         self.view = view
-        self.factory = factory
-        contentFeedService = factory.makeContentFeedService()
+        contentFeedService = DependencyContainer.resolve()
     }
     
     // MARK: - Protocol Impl
@@ -70,7 +68,7 @@ class HomeViewPresenter: HomeViewPresenterProtocol {
     
     func fetchContentFeed(callback: @escaping () -> ()) {
         view?.startAnimating()
-        contentFeedService?.getContentFeed(pageCount: 200) { [weak self] result in
+        contentFeedService.getContentFeed(pageCount: 200) { [weak self] result in
             switch result {
             case .success(let feed):
                 self?.contentFeed = feed.feed

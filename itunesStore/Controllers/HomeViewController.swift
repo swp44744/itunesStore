@@ -1,12 +1,13 @@
 //
 //  HomeViewController.swift
-//  demo
+//  itunesStore
 //
 //  Created by Swapnil Raut on 7/24/20.
 //  Copyright © 2020 Swapnil Raut. All rights reserved.
 //
 
 import UIKit
+import DependencyContainer
 
 public protocol HomeViewProtocol: class {
     func startAnimating()
@@ -30,6 +31,7 @@ class HomeViewController: UICollectionViewController, HomeViewProtocol, DetailVi
 
     
      // MARK: - Lifecycle Methods
+    
     override func loadView() {
         super.loadView()
         setupConstraints()
@@ -39,7 +41,7 @@ class HomeViewController: UICollectionViewController, HomeViewProtocol, DetailVi
         collectionView.dataSource = self
         collectionView.delegate = self
         self.collectionView.alwaysBounceVertical = true
-        presenter = HomeViewPresenter(with: self, factory: BaseServiceFactory())
+        presenter = HomeViewPresenter(with: self)
         fetchContentFeed()
         setupView()
         setupNavigationBar()
